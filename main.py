@@ -13,6 +13,6 @@ def xml_to_csv(xml_path, csv_path):
     item_dict = doc["rss"]["channel"]["item"]
     df = pd.DataFrame(item_dict)
     df.columns = df.columns.str.replace("g:", "")
-    df.to_csv(path_or_buf=csv_path)
-
+    df = df.fillna('""')
+    df.head(10).to_csv(path_or_buf=csv_path)
 xml_to_csv('test.xml', 'test.csv')
